@@ -1,16 +1,14 @@
-package sotrh.libgdx.weeklies.snake;
+package sotrh.libgdx.runner;
 
 import com.badlogic.gdx.Screen;
 
 /**
  * author: benjamin
- * date: 3/8/16
- * project: Snake
- * package: sotrh.libgdx.weeklies.snake
+ * date: 4/14/16
+ * project: Runner
+ * package: sotrh.libgdx.runner
  */
 public class PlayScreen implements Screen {
-    Field field;
-
     @Override
     public void show() {
 

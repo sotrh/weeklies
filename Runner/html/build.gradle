@@ -7,8 +7,8 @@ gwt {
     minHeapSize="1G"
 
     src = files(file("src/")) // Needs to be in front of "modules" below.
-    modules 'sotrh.libgdx.weeklies.runner.GdxDefinition'
-    devModules 'sotrh.libgdx.weeklies.runner.GdxDefinitionSuperdev'
+    modules 'sotrh.libgdx.runner.GdxDefinition'
+    devModules 'sotrh.libgdx.runner.GdxDefinitionSuperdev'
     project.webAppDirName = 'webapp'
 
     compiler {

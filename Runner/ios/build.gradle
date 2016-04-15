@@ -4,7 +4,7 @@ sourceCompatibility = '1.7'
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 ext {
-	mainClassName = "sotrh.libgdx.weeklies.runner.IOSLauncher"
+	mainClassName = "sotrh.libgdx.runner.IOSLauncher"
 }
 
 launchIPhoneSimulator.dependsOn build

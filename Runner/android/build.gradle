@@ -15,7 +15,7 @@ android {
         instrumentTest.setRoot('tests')
     }
     defaultConfig {
-        applicationId "sotrh.libgdx.weeklies.runner"
+        applicationId "sotrh.libgdx.runner"
         minSdkVersion 8
         targetSdkVersion 23
     }
@@ -68,7 +68,7 @@ task run(type: Exec) {
     }
 
     def adb = path + "/platform-tools/adb"
-    commandLine "$adb", 'shell', 'am', 'start', '-n', 'sotrh.libgdx.weeklies.runner/sotrh.libgdx.weeklies.runner.AndroidLauncher'
+    commandLine "$adb", 'shell', 'am', 'start', '-n', 'sotrh.libgdx.runner/sotrh.libgdx.runner.AndroidLauncher'
 }
 
 // sets up the Android Eclipse project, using the old Ant based build.
