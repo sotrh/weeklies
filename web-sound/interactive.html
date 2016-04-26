@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Interactive Sound Demo</title>
+	<script type="text/javascript">
+		window.onload = function() {
+			var context = new window.webkitAudioContext();
+
+			// Oscillators
+			var oscillator = context.createOscillator();
+			var oscillator2 = context.createOscillator();
+
+			// Gains
+			var volume = context.createGain();
+			var gain = context.createGain();
+
+			// Window related constants
+			var width = window.innerWidth;
+			var height = window.innerHeight;
+
+			oscillator.frequency.value = 400;
+			oscillator2.frequency.value = 5;
+
+			volume.gain.value = 0.3;
+			volume.connect(context.destination);
+			oscillator2.connect(volume);
+			oscillator.connect(volume);
+			oscillator2.start(0);
+			oscillator.start(0);
+
+			gain.gain.value = 100;
+			gain.connect(oscillator.frequency);
+			oscillator2.connect(gain);
+
+			document.addEventListener("mousemove", function(e) {
+				oscillator.frequency.value = e.clientY / height * 1000 + 300;
+				oscillator2.frequency.value = e.clientX / width * 30 + 5;
+			});
+		};
+	</script>
+</head>
+<body>
+<h1>Move Your Mouse Around!</h1>
+</body>
+</html>

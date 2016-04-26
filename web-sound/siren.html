@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Siren Sound - Lower Your Volume</title>
+	<script type="text/javascript">
+		var context = new window.webkitAudioContext();
+
+		var oscillator = context.createOscillator();
+		oscillator.frequency.value = 440;
+		var volume = context.createGain();
+		volume.gain.value = .3;
+		volume.connect(context.destination);
+		oscillator.connect(volume);
+		oscillator.start(0);
+
+		var gain = context.createGain();
+		gain.gain.value = 100;
+		gain.connect(oscillator.frequency);
+
+		var oscillator2 = context.createOscillator();
+		oscillator2.frequency.value = 1;
+		oscillator2.connect(gain);
+		oscillator2.type = "square";
+		oscillator2.start(0);
+
+	</script>
+</head>
+<body>
+<h1>Annoying Isn't It?</h1>
+</body>
+</html>

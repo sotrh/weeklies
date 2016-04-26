@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>It's Music!</title>
+	<script type="text/javascript">
+		window.onload = function() {
+
+			var audio = new window.webkitAudioContext(),
+			    position = 0,
+			    scale = {
+			        g: 392,
+			        f: 349.23,
+			        e: 329.63,
+			        b: 493.88
+			    },
+			    song = "gfefgg-fff-gbb-gfefggggffgfe---";
+
+			setInterval(play, 1000 / 4);
+
+			function createOscillator(freq) {
+			    var attack = 10,
+			        decay = 250,
+			        gain = audio.createGain(),
+			        osc = audio.createOscillator();
+
+			    gain.connect(audio.destination);
+			    gain.gain.setValueAtTime(0, audio.currentTime);
+			    gain.gain.linearRampToValueAtTime(0.3, audio.currentTime + attack / 1000);
+			    gain.gain.linearRampToValueAtTime(0, audio.currentTime + decay / 1000);
+
+			    osc.frequency.value = freq;
+			    osc.type = "square";
+			    osc.connect(gain);
+			    osc.start(0);
+
+			    setTimeout(function() {
+			        osc.stop(0);
+			        osc.disconnect(gain);
+			        gain.disconnect(audio.destination);
+			    }, decay)
+			}
+
+			function play() {
+			    var note = song.charAt(position),
+			        freq = scale[note];
+			    position += 1;
+			    if(position >= song.length) {
+			        position = 0;
+			    }
+			    if(freq) {
+			        createOscillator(freq);
+			    }
+			}
+		};
+	</script>
+</head>
+<body>
+<h1>Pretty Simple but It Works!</h1>
+</body>
+</html>
