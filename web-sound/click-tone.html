@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Click to Tone!</title>
+<script>
+var context = new AudioContext();
+var attack = 10;
+var decay = 250;
+
+// Create the oscillator and gain
+var oscillator = context.createOscillator();
+oscillator.frequency.value = 440;
+oscillator.type = "saw"
+
+var gain = context.createGain();
+gain.gain.value = .0;
+gain.connect(context.destination);
+
+// Connect the oscillator to the gain
+oscillator.connect(gain);
+oscillator.start(0);
+
+</script>
+</head>
+
+<body>
+<p>This example uses the addEventListener() method to attach a "mousedown" and "mouseup" event to a p element, and uses the AudioContext to play a tone on "mousedown".</p>
+
+<p id="demo">Click me!</p>
+
+<script>
+document.getElementById("demo").addEventListener("mousedown", mouseDown);
+document.getElementById("demo").addEventListener("mouseup", mouseUp);
+
+function mouseDown() {
+    document.getElementById("demo").innerHTML = "Playing Tone!";
+    gain.gain.linearRampToValueAtTime(0.3, context.currentTime + attack / 1000);
+}
+
+function mouseUp() {
+    document.getElementById("demo").innerHTML = "Click me!";
+    console.log("mouseUp");
+    gain.gain.linearRampToValueAtTime(0.0, context.currentTime + decay / 1000);
+}
+</script>
+</body>
+
+</html>
